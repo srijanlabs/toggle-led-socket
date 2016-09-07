@@ -3,18 +3,16 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var gpio = require('pi-gpio');
 
-gpio.open(7, 'output');
-
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
 io.on('connection', function(socket){
   socket.on('toggle', function(state){
-    gpio.write(7, state, function(err) {
-      // if (err) throw err;
-      console.log('Written to pin');
-      gpio.close(7);
+    gpio.open(7, "output", function(err) {   // Open pin 7 for output
+        gpio.write(7, 1, function() {      // Set pin 7 high (1)
+            gpio.close(7);           // Close pin 7
+        });
     });
     // console.log(state);
     // console.log(typeof(state));
