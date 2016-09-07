@@ -12,7 +12,7 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
   socket.on('toggle', function(state){
     gpio.write(7, state, function(err) {
-      if (err) throw err;
+      // if (err) throw err;
       console.log('Written to pin');
       gpio.close(7);
     });
