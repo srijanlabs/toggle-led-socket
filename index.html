@@ -153,14 +153,8 @@
 
       button.addEventListener('click', function(e) {
         socket.emit('toggle', e.target.checked);
-        // console.log(e.target.checked);
         return false;
       });
-
-      // socket.on('state', function(data){
-      //   console.log('returned state from server ' + data);
-      // });
-
     </script>
   </body>
 </html>
